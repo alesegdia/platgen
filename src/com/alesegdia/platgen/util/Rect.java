@@ -9,5 +9,10 @@ public class Rect {
 		this.position.Set(x,y);
 		this.size.Set(w,h);
 	}
+	@Override
+	public String toString() {
+		return "[" + position.x + "," + position.y + " - " + size.x + "," + size.y + "]";
+	}
+
 
 }
