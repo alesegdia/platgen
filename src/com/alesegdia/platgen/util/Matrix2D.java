@@ -52,9 +52,9 @@ public class Matrix2D <T> {
 	public void Set( int row, int col, T val )
 	{
 		if( row < 0 ) row = 0;
-		if( row > rows ) row = rows - 1;
+		if( row >= rows ) row = rows - 1;
 		if( col < 0 ) col = 0;
-		if( col > cols ) col = cols - 1;
+		if( col >= cols ) col = cols - 1;
 		
 		data.set( GetPos( row, col ), val );
 	}

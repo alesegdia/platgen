@@ -11,7 +11,7 @@ public class TileMapRenderer extends JComponent {
 	
 	private TileMap map;
 	private Dimension dimension;
-	private int tilesize = 1;
+	private int tilesize = 8;
 	
 	public TileMapRenderer(TileMap map)
 	{
