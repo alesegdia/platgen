@@ -3,17 +3,13 @@ package com.alesegdia.platgen.generator;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.alesegdia.platgen.tilemap.TileMap;
-import com.alesegdia.platgen.tilemap.TileType;
 import com.alesegdia.platgen.util.RNG;
-import com.alesegdia.platgen.util.Rect;
-import com.alesegdia.platgen.util.Vec2;
 
 public class RegionGenerator {
 	
 	RNG rng = new RNG();
 	
-	public static final int numRegions = 5;
+	public static final int numRegions = 6;
 	public static final float minK = 0.25f;
 	public static final float maxK = 0.75f;
 	
@@ -39,7 +35,6 @@ public class RegionGenerator {
 			RegionTree current = children.get(rng.nextInt(0,children.size()-1));
 			if( validForDivision(current) ) {
 				float k = clamp(rng.nextFloat(), minK, maxK);
-				System.out.println(k);
 				boolean horizontal = rng.nextBoolean();
 				/*
 				if( vert > 2 ) {

@@ -11,7 +11,7 @@ public class TileMapRenderer extends JComponent {
 	
 	private TileMap map;
 	private Dimension dimension;
-	private int tilesize = 6;
+	private int tilesize = 4;
 	
 	public TileMapRenderer(TileMap map)
 	{
@@ -40,6 +40,7 @@ public class TileMapRenderer extends JComponent {
 			}
 		}
 		
+		/*
 		g.setColor(Color.lightGray);
 		for( int i = 0; i < this.getWidth(); i += tilesize ) {
 			g.drawLine(0, i, this.getWidth(), i);
@@ -47,6 +48,7 @@ public class TileMapRenderer extends JComponent {
 		for( int i = 0; i < this.getWidth(); i += tilesize ) {
 			g.drawLine(i, 0, i, this.getWidth());
 		}
+		*/
 	}
 
 	public Dimension getPreferredSize() {

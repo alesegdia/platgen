@@ -13,9 +13,6 @@ public class RegionTree extends Region {
 	public int level = 0;
 	
 	public void Divide(boolean horizontal, float k) {
-		if( A != null || B != null ) {
-			System.err.println("FUCK!");
-		}
 		if( horizontal ) {
 			int mid1 = (int) (this.size.y * k);
 			int mid2 = this.size.y - mid1;

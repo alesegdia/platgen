@@ -13,9 +13,10 @@ public class Region extends Rect {
 		super(x, y, w, h);
 	}
 	
-	public Sector createSolidSector(int midX, int width, int height) {
+	public Sector createSolidSector(int midX, int width, int height, int ySize) {
 		Sector s = createSector(midX, width, false);
 		s.height = height;
+		s.size.y = ySize;
 		return s;
 	}
 	

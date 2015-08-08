@@ -2,7 +2,6 @@ package com.alesegdia.platgen.generator;
 
 import com.alesegdia.platgen.tilemap.TileMap;
 import com.alesegdia.platgen.tilemap.TileType;
-import com.alesegdia.platgen.util.Rect;
 
 public class MapRasterizer {
 

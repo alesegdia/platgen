@@ -2,7 +2,6 @@ package com.alesegdia.platgen.test;
 
 import com.alesegdia.platgen.generator.LogicMap;
 import com.alesegdia.platgen.generator.MapRasterizer;
-import com.alesegdia.platgen.generator.RegionGenerator;
 import com.alesegdia.platgen.generator.SectorGenerator;
 import com.alesegdia.platgen.tilemap.TileMapRenderer;
 
