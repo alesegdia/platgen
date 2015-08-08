@@ -8,7 +8,7 @@ import java.util.Set;
 
 import com.alesegdia.platgen.util.RNG;
 
-public class RegionGenerator {
+public class RegionBalancedGenerator {
 	
 	RNG rng = new RNG();
 	
@@ -63,6 +63,29 @@ public class RegionGenerator {
 		
 		
 		for( int i = 0; i < numRegions; i++ ) {
+			this.AddDivisionsFromList(children);
+			System.out.println("before add divisions: " + rdset.size());
+			cleanSet();
+			System.out.println("before cleanset: " + rdset.size());
+
+			//RegionTree current = children.get(rng.nextInt(0,children.size()-1));
+			List<RegionDivision> rdlist = new LinkedList<RegionDivision>();
+			rdlist.addAll(rdset);
+			Collections.sort(rdlist);
+			System.out.println(rdlist.get(0));
+			RegionDivision rd = rdlist.get(0);
+			float k = clamp(rng.nextFloat(), minK, maxK);
+			boolean horizontal = rd.horizontal;
+			rd.r.Divide(horizontal, k);
+			children.add(rd.r.A);
+			children.add(rd.r.B);
+			rdset.remove(rd);
+			cleanSet();
+			System.out.println(rdlist.size());
+		}
+		
+		/*
+		for( int i = 0; i < numRegions; i++ ) {
 			RegionTree current = children.get(rng.nextInt(0,children.size()-1));
 			if( validForDivision(current) ) {
 				float k = clamp(rng.nextFloat(), minK, maxK);
@@ -82,7 +105,7 @@ public class RegionGenerator {
 				i--;
 			}
 		}
-
+		*/
 		return lm;
 	}	
 

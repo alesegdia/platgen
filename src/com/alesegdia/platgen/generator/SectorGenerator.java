@@ -5,10 +5,10 @@ import com.alesegdia.platgen.util.Vec2;
 
 public class SectorGenerator {
 	
-	public static final Vec2 zoneWidthRange = new Vec2(1,3); // 6,12);
-	public static final Vec2 deltaHeightRange = new Vec2(1,2); //3,10);
-	public static final Vec2 ySizeRange = new Vec2(1,2); //20,40);
-	public static final Vec2 gapWidthRange = new Vec2(1,2); //3,6);
+	public static final Vec2 zoneWidthRange = new Vec2(6,40);
+	public static final Vec2 deltaHeightRange = new Vec2(3,5);
+	public static final Vec2 ySizeRange = new Vec2(10,20);
+	public static final Vec2 gapWidthRange = new Vec2(3,6);
 
 	RNG rng = new RNG();
 	

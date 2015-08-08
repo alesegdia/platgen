@@ -12,7 +12,7 @@ import com.alesegdia.platgen.util.Vec2;
 public class SimpleGenerator {
 	
 	public static final int numZones = 20;
-	public static final Vec2 zoneWidthRange = new Vec2(6,12);
+	public static final Vec2 zoneWidthRange = new Vec2(6,40);
 	public static final int maxDeltaHeight = 10;
 	public static final Vec2 gapWidthRange = new Vec2(3,6);
 	private TileMap tm;

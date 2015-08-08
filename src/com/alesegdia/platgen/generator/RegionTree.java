@@ -5,6 +5,8 @@ public class RegionTree extends Region {
 	public RegionTree(int x, int y, int w, int h) {
 		super(x, y, w, h);
 		this.parent = null;
+		this.A = null;
+		this.B = null;
 	}
 
 	public RegionTree A;
