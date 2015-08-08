@@ -8,7 +8,7 @@ import java.util.Set;
 
 import com.alesegdia.platgen.util.RNG;
 
-public class RegionGenerator {
+public class RegionGeneratorBalanced implements IRegionGenerator {
 	
 	RNG rng = new RNG();
 	
@@ -57,33 +57,64 @@ public class RegionGenerator {
 		lm = new LogicMap(w,h);
 		List<RegionTree> children = new LinkedList<RegionTree>();
 		rdset.clear();
-		
 		children.add(lm.regionTree);
-		int vert = 0;
-		
 		
 		for( int i = 0; i < numRegions; i++ ) {
-			RegionTree current = children.get(rng.nextInt(0,children.size()-1));
-			if( validForDivision(current) ) {
-				float k = clamp(rng.nextFloat(), minK, maxK);
-				boolean horizontal = rng.nextBoolean();
-				if( vert > 2 ) {
-					horizontal = true;
-					vert = 0;
-				} else {
-					horizontal = false;
-					vert++;
-				}
-				current.Divide(horizontal, k);
-				children.remove((Object)current);
-				children.add(current.A);
-				children.add(current.B);
-			} else {
-				i--;
-			}
-		}
+			this.AddDivisionsFromList(children);
+			cleanSet();
 
+			List<RegionDivision> rdlist = new LinkedList<RegionDivision>();
+			rdlist.addAll(rdset);
+			Collections.sort(rdlist);
+
+			RegionDivision rd = rdlist.get(0);
+			float k = clamp(rng.nextFloat(), minK, maxK);
+			boolean horizontal = rd.horizontal;
+			rd.r.Divide(horizontal, k);
+			children.add(rd.r.A);
+			children.add(rd.r.B);
+			rdset.remove(rd);
+		}
+		
 		return lm;
 	}	
 
 }
+
+class RegionDivision implements Comparable<RegionDivision> {
+
+	RegionTree r;
+	boolean horizontal = false;
+	
+	public RegionDivision(RegionTree r, boolean horizontal) {
+		this.r = r;
+		this.horizontal = horizontal;
+	}
+	
+	float value() {
+		if( horizontal ) {
+			return this.r.size.x / this.r.size.y;
+		} else {
+			return this.r.size.y / this.r.size.x;
+		}
+	}
+	
+	@Override
+	public int compareTo(RegionDivision o) {
+		return Float.compare(this.value(), o.value());
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if( this.getClass() != o.getClass() ) return false;
+		RegionDivision rd = ((RegionDivision)o);
+		return rd.r == this.r && rd.horizontal == this.horizontal;
+	}
+	
+	@Override
+	public String toString() {
+		return horizontal + ", " + r.toString();
+	}
+
+}
+
