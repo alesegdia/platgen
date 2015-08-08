@@ -9,7 +9,7 @@ import com.alesegdia.platgen.util.RNG;
 import com.alesegdia.platgen.util.Rect;
 import com.alesegdia.platgen.util.Vec2;
 
-public class Generator {
+public class SimpleGenerator {
 	
 	public static final int numZones = 20;
 	public static final Vec2 zoneWidthRange = new Vec2(6,12);
