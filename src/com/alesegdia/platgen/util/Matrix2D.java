@@ -41,6 +41,11 @@ public class Matrix2D <T> {
 
 	public T Get( int row, int col )
 	{
+		if( row < 0 ) row = 0;
+		if( row >= rows ) row = rows - 1;
+		if( col < 0 ) col = 0;
+		if( col >= cols ) col = cols - 1;
+		
 		return data.get( GetPos( row, col ) );
 	}
 	
