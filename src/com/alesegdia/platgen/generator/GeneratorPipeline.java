@@ -10,6 +10,8 @@ public class GeneratorPipeline {
 		public ERegionGenerator regionGeneratorType = ERegionGenerator.SIMPLE;
 		public Vec2 mapSize = new Vec2(0,0);
 	}
+
+	private LogicMap lm;
 	
 	public TileMap generate(Config cfg) {
 		IRegionGenerator g;
@@ -19,13 +21,17 @@ public class GeneratorPipeline {
 			g = new RegionGeneratorBalanced();
 		}
 
-		LogicMap lm = g.Generate(cfg.mapSize.x, cfg.mapSize.y);
+		lm = g.Generate(cfg.mapSize.x, cfg.mapSize.y);
 		SectorGenerator sg = new SectorGenerator();
 		SectorCreatorVisitor scv = new SectorCreatorVisitor(sg);
 		lm.regionTree.visit(scv);
 		MapRasterizer mr = new MapRasterizer(lm);
 		TileMap tm = mr.raster();
 		return tm;
+	}
+
+	public LogicMap getLogicMap() {
+		return lm;
 	}
 
 }
