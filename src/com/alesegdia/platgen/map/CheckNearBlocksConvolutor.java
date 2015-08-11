@@ -9,11 +9,10 @@ public class CheckNearBlocksConvolutor extends TileMapConvolutor {
 		// TODO Auto-generated constructor stub
 	}
 
-	private Vec2 currentCenterTile;
-	
 	@Override
 	public void startWindowProcess(int i, int j) {
-		currentCenterTile = new Vec2(i,j);
+		// prepare for next
+		numNearTiles = 0;
 	}
 
 	@Override
@@ -28,9 +27,6 @@ public class CheckNearBlocksConvolutor extends TileMapConvolutor {
 	@Override
 	public void endWindowProcess(int i, int j) {
 		if( numNearTiles == 0 ) outMap.Set(i, j, TileType.OPENED);
-
-		// prepare for next
-		numNearTiles = 0;
 	}
 
 }
