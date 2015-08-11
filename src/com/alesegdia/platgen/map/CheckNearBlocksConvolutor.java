@@ -1,12 +1,16 @@
 package com.alesegdia.platgen.map;
 
-import com.alesegdia.platgen.util.Vec2;
-
 public class CheckNearBlocksConvolutor extends TileMapConvolutor {
 
-	public CheckNearBlocksConvolutor(TileMap tm, int winWidth, int winHeight) {
-		super(tm, winWidth, winHeight, true);
-		// TODO Auto-generated constructor stub
+	public CheckNearBlocksConvolutor(ICheckNearTilesSolver cnts, TileMap tm, int winWidth, int winHeight, boolean inAsOut) {
+		super(tm, winWidth, winHeight, inAsOut);
+		this.cnts = cnts;
+	}
+
+	public CheckNearBlocksConvolutor(ICheckNearTilesSolver cnts, TileMap tm, int ww, int wh, boolean inAsOut, boolean useNew) {
+		
+		super(tm, ww, wh, inAsOut, useNew);
+		this.cnts = cnts;
 	}
 
 	@Override
@@ -24,9 +28,11 @@ public class CheckNearBlocksConvolutor extends TileMapConvolutor {
 
 	int numNearTiles = 0;
 	
+	ICheckNearTilesSolver cnts;
+	
 	@Override
 	public void endWindowProcess(int i, int j) {
-		if( numNearTiles == 0 ) outMap.Set(i, j, TileType.OPENED);
+		if( cnts.process(numNearTiles) ) outMap.Set(i, j, TileType.DOORL);
 	}
 
 }

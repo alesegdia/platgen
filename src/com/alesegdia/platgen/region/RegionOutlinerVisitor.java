@@ -21,19 +21,19 @@ public class RegionOutlinerVisitor implements IRegionTreeVisitor {
 	void OutlineRegion(Region r) {
 		// UP
 		for( int i = r.position.x; i < r.position.x + r.size.x; i++ ) {
-			tm.Set(r.position.y, i, TileType.WALL);
+			tm.Set(r.position.y, i, TileType.REGIONLIMIT);
 		}
 		// DOWN
 		for( int i = r.position.x; i < r.position.x + r.size.x; i++ ) {
-			tm.Set(r.position.y + r.size.y-1, i, TileType.OPENED);
+			tm.Set(r.position.y + r.size.y-1, i, TileType.REGIONLIMIT);
 		}
 		// LEFT
 		for( int i = r.position.y; i < r.position.y + r.size.y; i++ ) {
-			tm.Set(i, r.position.x, TileType.DOORL);
+			tm.Set(i, r.position.x, TileType.REGIONLIMIT);
 		}
 		// RIGHT
 		for( int i = r.position.y; i < r.position.y + r.size.y; i++ ) {
-			tm.Set(i, r.position.x + r.size.x-1, TileType.USED);
+			tm.Set(i, r.position.x + r.size.x-1, TileType.REGIONLIMIT);
 		}
 	}
 

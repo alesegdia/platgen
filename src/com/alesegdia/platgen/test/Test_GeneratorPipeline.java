@@ -27,10 +27,9 @@ public class Test_GeneratorPipeline {
 		// generate map
 		GeneratorPipeline gp = new GeneratorPipeline();
 		TileMap tm = gp.generate(cfg);
-		CheckNearBlocksConvolutor cnbc = new CheckNearBlocksConvolutor(tm,10,10);
 
 		// render it
-		TileMapRenderer tmr = new TileMapRenderer(cnbc.convolute());
+		TileMapRenderer tmr = new TileMapRenderer(tm);
 		tmr.setTileSize(1);
 		tmr.Show();
 	}

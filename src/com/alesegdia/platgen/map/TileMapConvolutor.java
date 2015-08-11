@@ -10,11 +10,19 @@ public abstract class TileMapConvolutor {
 	protected TileMap outMap;
 
 	public TileMapConvolutor( TileMap tm, int winWidth, int winHeight, boolean useInAsOut ) {
+		this( tm, winWidth, winHeight, useInAsOut, false );
+	}
+	
+	public TileMapConvolutor( TileMap tm, int winWidth, int winHeight, boolean useInAsOut, boolean useNewMap ) {
 		this.inMap = tm;
 		if( useInAsOut ) {
 			this.outMap = inMap;
 		} else {
-			this.outMap = new TileMap(tm);			
+			if( useNewMap ) {
+				this.outMap = new TileMap(tm.cols, tm.rows, TileType.FREE);
+			} else {
+				this.outMap = new TileMap(tm);				
+			}
 		}
 		this.winWidth = winWidth;
 		this.winHeight = winHeight;
@@ -29,7 +37,7 @@ public abstract class TileMapConvolutor {
 				for( int ii = i; ii < i + winWidth; ii++ ) {
 					for( int jj = j; jj < j + winHeight; jj++ ) {
 						int tt = inMap.Get(ii, jj);
-						visitWindowTile( tt, ii, jj, ii, jj );
+						visitWindowTile( tt, ii, jj, i + halfWinWidth, j + halfWinHeight );
 					}
 				}
 				endWindowProcess(i + halfWinWidth, j + halfWinHeight);

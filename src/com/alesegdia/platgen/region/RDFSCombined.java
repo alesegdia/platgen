@@ -12,10 +12,6 @@ public class RDFSCombined implements IRegionDivisionFitnessSolver {
 		float areaValue = rdfsArea.computeFitness(size, horizontal);
 		float ratioValue = rdfsRatio.computeFitness(size, horizontal);
 		
-		System.out.println("===================");
-		System.out.println(areaValue);
-		System.out.println(ratioValue);
-		
 		return areaValue * ratioValue;
 	}
 

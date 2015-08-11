@@ -119,4 +119,10 @@ public class TileMap extends Matrix2D<Integer> {
 		}
 	}
 	
+	public void RenderGUI(int tilesize) {
+		TileMapRenderer tmr = new TileMapRenderer(this);
+		tmr.setTileSize(tilesize);
+		tmr.Show();
+	}
+	
 }

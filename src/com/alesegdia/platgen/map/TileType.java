@@ -9,6 +9,7 @@ public class TileType {
 	public static final int DOORH = 9;
 	public static final int DPES = 10;
 	public static final int OPENED = 11;
+	public static final int REGIONLIMIT = 12;
 	public static int ConvertFromString(String string) {
 		switch(string) {
 		case "free": return FREE; 
