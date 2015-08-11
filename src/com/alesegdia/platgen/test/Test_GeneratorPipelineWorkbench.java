@@ -42,12 +42,12 @@ public class Test_GeneratorPipelineWorkbench {
 			TileMap oneWayPlats1, oneWayPlats2,
 					union, strikesRemoved, oneWayPlatsFinal;
 			cnbc = new CheckNearBlocksConvolutor(new CNTSInRange(10,20), tm, 10, 10, false);
-			oneWayPlats1 = MapUtils.Extract(cnbc.convolute(),TileType.DOORL);
+			oneWayPlats1 = MapUtils.Extract(cnbc.convolute(),TileType.ONEWAYPLATFORM);
 			cnbc = new CheckNearBlocksConvolutor(new CNTSInRange(10,20), tm, 15, 15, false);			
-			oneWayPlats2 = MapUtils.Extract(cnbc.convolute(), TileType.DOORL);
+			oneWayPlats2 = MapUtils.Extract(cnbc.convolute(), TileType.ONEWAYPLATFORM);
 			union = MapUtils.Union(oneWayPlats2, MapUtils.Union(oneWayPlats1, tm));
 			union.RenderGUI(4);
-			strikesRemoved = MapUtils.RemoveHorizontalStrikesOfLessThan(union, TileType.DOORL, 3);
+			strikesRemoved = MapUtils.RemoveHorizontalStrikesOfLessThan(union, TileType.ONEWAYPLATFORM, 3);
 			oneWayPlatsFinal = MapUtils.Union(strikesRemoved, tm);
 			oneWayPlatsFinal.RenderGUI(4);
 		}
@@ -73,10 +73,10 @@ public class Test_GeneratorPipelineWorkbench {
 			TileMap union = new TileMap(tm.cols, tm.rows, TileType.FREE);
 			for( int i = 0; i < union.cols; i++ ) {
 				for( int j = 0; j < union.rows; j++ ) {
-					if( contoursOnlyConvoluted.Get(i,j) != TileType.DOORL &&
-							tmConvoluted2.Get(i, j) == TileType.DOORL &&
+					if( contoursOnlyConvoluted.Get(i,j) != TileType.ONEWAYPLATFORM &&
+							tmConvoluted2.Get(i, j) == TileType.ONEWAYPLATFORM &&
 							tmConvoluted2.Get(i, j) != TileType.WALL) {
-						union.Set(i, j, TileType.DOORL);
+						union.Set(i, j, TileType.ONEWAYPLATFORM);
 					}
 				}
 			}
@@ -93,7 +93,7 @@ public class Test_GeneratorPipelineWorkbench {
 			TileMap borders = cnbc.convolute();
 			borders.RenderGUI(1);
 			
-			TileMap negated = MapUtils.NegateMap(borders, TileType.DOORL);
+			TileMap negated = MapUtils.NegateMap(borders, TileType.ONEWAYPLATFORM);
 			negated.RenderGUI(1);
 			
 			cnbc = new CheckNearBlocksConvolutor(new CNTSGreaterThan(50), negated, 100, 1, false, true);

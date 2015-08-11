@@ -32,7 +32,7 @@ public class CheckNearBlocksConvolutor extends TileMapConvolutor {
 	
 	@Override
 	public void endWindowProcess(int i, int j) {
-		if( cnts.process(numNearTiles) ) outMap.Set(i, j, TileType.DOORL);
+		if( cnts.process(numNearTiles) ) outMap.Set(i, j, TileType.ONEWAYPLATFORM);
 	}
 
 }

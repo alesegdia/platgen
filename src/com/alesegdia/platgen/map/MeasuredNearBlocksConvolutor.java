@@ -16,7 +16,7 @@ public class MeasuredNearBlocksConvolutor extends TileMapConvolutor {
 
 	@Override
 	public void endWindowProcess(int i, int j) {
-		if( points > 200f ) outMap.Set(i, j, TileType.DOORL);
+		if( points > 200f ) outMap.Set(i, j, TileType.ONEWAYPLATFORM);
 	}
 
 	float distance( float x1, float y1, float x2, float y2 ) {

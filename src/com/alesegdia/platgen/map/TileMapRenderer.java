@@ -30,7 +30,7 @@ public class TileMapRenderer extends JComponent {
 				{
 				case TileType.FREE:	c = Color.white; 		break;
 				case TileType.DOOR: 	c = Color.yellow; 		break;
-				case TileType.DOORL: 	c = Color.cyan; 		break;
+				case TileType.ONEWAYPLATFORM: 	c = Color.cyan; 		break;
 				case TileType.REGIONLIMIT: 	c = Color.magenta;		break;
 				case TileType.USED: 	c = Color.lightGray; 	break;
 				case TileType.WALL: 	c = Color.green; 		break;
