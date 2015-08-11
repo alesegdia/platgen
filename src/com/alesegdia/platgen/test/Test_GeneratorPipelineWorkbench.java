@@ -12,6 +12,8 @@ import com.alesegdia.platgen.map.CheckNearBlocksConvolutor;
 import com.alesegdia.platgen.map.ConditionalRemovalConvolutor;
 import com.alesegdia.platgen.map.LogicMap;
 import com.alesegdia.platgen.map.MapUtils;
+import com.alesegdia.platgen.map.PlatformGenerator;
+import com.alesegdia.platgen.map.PlatformGenerator.Level;
 import com.alesegdia.platgen.map.TileMap;
 import com.alesegdia.platgen.map.TileMapRenderer;
 import com.alesegdia.platgen.map.TileType;
@@ -37,59 +39,39 @@ public class Test_GeneratorPipelineWorkbench {
 		GeneratorPipeline gp = new GeneratorPipeline();
 		TileMap tm = gp.generate(cfg);
 		LogicMap lm = gp.getLogicMap();
+		
+		// generate platforms
+		PlatformGenerator pg = new PlatformGenerator();
+		//pg.addLevel(new Level(10, 20, 10, 10));
+		//pg.addLevel(new Level(10, 20, 15, 15));
+		//pg.addLevel(new Level(10, 20, 25, 25));
+		pg.addLevel(new Level(10, 20, 10, 10));
+//		pg.addLevel(new Level(10, 20, 15, 15));
+		pg.addLevel(new Level(20, 30, 50, 50));
+		pg.addLevel(new Level(10, 20, 25, 25));
 
-		{
-			CheckNearBlocksConvolutor cnbc;
-			TileMap oneWayPlats1, oneWayPlats2, oneWayPlats3,
-					union, strikesRemoved, oneWayPlatsFinal;
-			
-			// generate level 1 one way platforms
-			cnbc = new CheckNearBlocksConvolutor(new CNTSInRange(10,20), tm, 10, 10, false);
-			oneWayPlats1 = MapUtils.Extract(cnbc.convolute(),TileType.ONEWAYPLATFORM);
-
-			// generate level 2 one way platforms
-			cnbc = new CheckNearBlocksConvolutor(new CNTSInRange(5,10), tm, 15, 15, false);			
-			cnbc = new CheckNearBlocksConvolutor(new CNTSInRange(10,20), tm, 15, 15, false);			
-			oneWayPlats2 = MapUtils.Extract(cnbc.convolute(), TileType.ONEWAYPLATFORM);
-
-			// generate level 2 one way platforms
-			cnbc = new CheckNearBlocksConvolutor(new CNTSInRange(10,20), tm, 25, 25, false);			
-			oneWayPlats3 = MapUtils.Extract(cnbc.convolute(), TileType.ONEWAYPLATFORM);
-
-			// join both levels
-			union = MapUtils.Union(oneWayPlats3, MapUtils.Union(oneWayPlats2, MapUtils.Union(oneWayPlats1, tm)));
-			union.RenderGUI(4);
-			
-			// remove strikes of less than 3
-			strikesRemoved = MapUtils.RemoveHorizontalStrikesOfLessThan(union, TileType.ONEWAYPLATFORM, 3);
-			
-			ConditionalRemovalConvolutor crc = new ConditionalRemovalConvolutor(strikesRemoved, 3, 3, false);
-			crc.convolute().RenderGUI(4);
-			
-			strikesRemoved = MapUtils.RemoveHorizontalStrikesOfLessThan(crc.convolute(), TileType.ONEWAYPLATFORM, 3);
-			
-			// join into map and render
-			oneWayPlatsFinal = MapUtils.Union(strikesRemoved, tm);
-			oneWayPlatsFinal.RenderGUI(4);
-		}
-
-		/*
+		tm = pg.generate(tm);
+		//tm.RenderGUI(2);
+		
+		tm.RenderGUI(2);
+		tm = MapUtils.ReplaceTiles(tm, TileType.ONEWAYPLATFORM, TileType.WALL);
+		
 		{
 			CheckNearBlocksConvolutor cnbc;
 			cnbc = new CheckNearBlocksConvolutor(new CNTSInRange(10,20), tm, 10,10, false);
 			TileMap tmConvoluted = cnbc.convolute();
-			tmConvoluted.RenderGUI(2);
+			//tmConvoluted.RenderGUI(2);
 			TileMap contoursOnly = new TileMap(tm.cols, tm.rows, TileType.FREE);
 			RegionOutlinerVisitor rov = new RegionOutlinerVisitor(contoursOnly);
 			lm.regionTree.visit(rov);
 			cnbc = new CheckNearBlocksConvolutor(new CNTSLessThan(10), contoursOnly, 40,40,false);
 			TileMap contoursOnlyConvoluted = cnbc.convolute();
 			
-			contoursOnlyConvoluted.RenderGUI(1);
+			//contoursOnlyConvoluted.RenderGUI(1);
 			
 			cnbc = new CheckNearBlocksConvolutor(new CNTSLessThan(10), tm, 20, 20, false);			
 			TileMap tmConvoluted2 = cnbc.convolute();
-			tmConvoluted2.RenderGUI(1);
+			//tmConvoluted2.RenderGUI(1);
 			
 
 			TileMap union = new TileMap(tm.cols, tm.rows, TileType.FREE);
@@ -103,33 +85,32 @@ public class Test_GeneratorPipelineWorkbench {
 				}
 			}
 			
-			union.RenderGUI(1);
+			//union.RenderGUI(1);
 			
 			cnbc = new CheckNearBlocksConvolutor(new CNTSInRange(10,20), union, 20, 20, false);
-			cnbc.convolute().RenderGUI(1);
+			//cnbc.convolute().RenderGUI(1);
 			
 			cnbc = new CheckNearBlocksConvolutor(new CNTSOutRange(10,20), union, 20, 20, false);
-			cnbc.convolute().RenderGUI(1);
+			//cnbc.convolute().RenderGUI(1);
 			
 			cnbc = new CheckNearBlocksConvolutor(new CNTSLessThan(10), union, 20, 20, false);
 			TileMap borders = cnbc.convolute();
-			borders.RenderGUI(1);
+			//borders.RenderGUI(1);
 			
 			TileMap negated = MapUtils.NegateMap(borders, TileType.ONEWAYPLATFORM);
-			negated.RenderGUI(1);
+			//negated.RenderGUI(1);
 			
 			cnbc = new CheckNearBlocksConvolutor(new CNTSGreaterThan(50), negated, 100, 1, false, true);
 			TileMap casi = cnbc.convolute();
-			casi.RenderGUI(1);
+			//casi.RenderGUI(1);
 
-			MapUtils.Union(tmConvoluted, casi).RenderGUI(1);
+			//MapUtils.Union(tmConvoluted, casi).RenderGUI(1);
 			
 			cnbc = new CheckNearBlocksConvolutor(new CNTSGreaterThan(10), union, 20, 20, false);
-			cnbc.convolute().RenderGUI(1);
+			//cnbc.convolute().RenderGUI(1);
 			
-			tmConvoluted.RenderGUI(2);
+			//tmConvoluted.RenderGUI(2);
 		}
-		*/
 	}
 	
 }

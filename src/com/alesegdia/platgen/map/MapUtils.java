@@ -73,4 +73,16 @@ public class MapUtils {
 		return ret;
 	}
 	
+	public static TileMap ReplaceTiles( TileMap tm, int oldt, int newt ) {
+		TileMap ret = new TileMap(tm);
+		for( int i = 0; i < ret.cols; i++ ) {
+			for( int j = 0; j < ret.rows; j++ ) {
+				if( ret.Get(i, j) == oldt ) {
+					ret.Set(i, j, newt);
+				}
+			}
+		}
+		return ret;
+	}
+	
 }
