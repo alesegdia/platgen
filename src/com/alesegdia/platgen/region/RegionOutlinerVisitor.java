@@ -1,7 +1,7 @@
-package com.alesegdia.platgen.generator;
+package com.alesegdia.platgen.region;
 
-import com.alesegdia.platgen.tilemap.TileMap;
-import com.alesegdia.platgen.tilemap.TileType;
+import com.alesegdia.platgen.map.TileMap;
+import com.alesegdia.platgen.map.TileType;
 
 public class RegionOutlinerVisitor implements IRegionTreeVisitor {
 

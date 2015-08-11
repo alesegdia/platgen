@@ -1,4 +1,4 @@
-package com.alesegdia.platgen.generator;
+package com.alesegdia.platgen.config;
 
 public enum ERegionGenerator {
 	SIMPLE, BALANCED

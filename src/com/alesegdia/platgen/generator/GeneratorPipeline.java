@@ -1,6 +1,16 @@
 package com.alesegdia.platgen.generator;
 
-import com.alesegdia.platgen.tilemap.TileMap;
+import com.alesegdia.platgen.config.Config;
+import com.alesegdia.platgen.config.ERegionGenerator;
+import com.alesegdia.platgen.map.LogicMap;
+import com.alesegdia.platgen.map.MapRasterizer;
+import com.alesegdia.platgen.map.TileMap;
+import com.alesegdia.platgen.region.IRegionGenerator;
+import com.alesegdia.platgen.region.RegionGeneratorBalanced;
+import com.alesegdia.platgen.region.RegionGeneratorSimple;
+import com.alesegdia.platgen.region.RegionOutlinerVisitor;
+import com.alesegdia.platgen.sector.SectorCreatorVisitor;
+import com.alesegdia.platgen.sector.SectorGenerator;
 
 public class GeneratorPipeline {
 

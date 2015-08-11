@@ -1,4 +1,7 @@
-package com.alesegdia.platgen.generator;
+package com.alesegdia.platgen.sector;
+
+import com.alesegdia.platgen.region.IRegionTreeVisitor;
+import com.alesegdia.platgen.region.RegionTree;
 
 public class SectorCreatorVisitor implements IRegionTreeVisitor {
 

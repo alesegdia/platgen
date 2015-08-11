@@ -1,13 +1,15 @@
-package com.alesegdia.platgen.generator;
+package com.alesegdia.platgen.sector;
 
-import com.alesegdia.platgen.tilemap.TileMap;
-import com.alesegdia.platgen.tilemap.TileType;
+import com.alesegdia.platgen.map.TileMap;
+import com.alesegdia.platgen.map.TileType;
+import com.alesegdia.platgen.region.IRegionTreeVisitor;
+import com.alesegdia.platgen.region.RegionTree;
 
 public class SectorPlotterVisitor implements IRegionTreeVisitor {
 
 	private TileMap tm;
 
-	SectorPlotterVisitor(TileMap tm) {
+	public SectorPlotterVisitor(TileMap tm) {
 		this.tm = tm;
 	}
 	

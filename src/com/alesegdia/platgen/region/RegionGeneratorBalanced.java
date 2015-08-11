@@ -1,4 +1,4 @@
-package com.alesegdia.platgen.generator;
+package com.alesegdia.platgen.region;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import com.alesegdia.platgen.config.Config;
+import com.alesegdia.platgen.map.LogicMap;
 import com.alesegdia.platgen.util.RNG;
 
 public class RegionGeneratorBalanced implements IRegionGenerator {
@@ -94,11 +96,17 @@ class RegionDivision implements Comparable<RegionDivision> {
 	}
 	
 	float value() {
+		float area = this.r.size.x * this.r.size.y;
+		return 1f/area;
+		/*
 		if( horizontal ) {
+			//return this.r.size.y / this.r.size.x;
 			return this.r.size.x / this.r.size.y;
 		} else {
+			//return this.r.size.x / this.r.size.y;
 			return this.r.size.y / this.r.size.x;
 		}
+		*/
 	}
 	
 	@Override

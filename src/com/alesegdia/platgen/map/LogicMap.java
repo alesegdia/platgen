@@ -1,5 +1,6 @@
-package com.alesegdia.platgen.generator;
+package com.alesegdia.platgen.map;
 
+import com.alesegdia.platgen.region.RegionTree;
 import com.alesegdia.platgen.util.Vec2;
 
 public class LogicMap {

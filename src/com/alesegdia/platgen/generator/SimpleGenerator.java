@@ -3,8 +3,8 @@ package com.alesegdia.platgen.generator;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.alesegdia.platgen.tilemap.TileMap;
-import com.alesegdia.platgen.tilemap.TileType;
+import com.alesegdia.platgen.map.TileMap;
+import com.alesegdia.platgen.map.TileType;
 import com.alesegdia.platgen.util.RNG;
 import com.alesegdia.platgen.util.Rect;
 import com.alesegdia.platgen.util.Vec2;

@@ -1,4 +1,4 @@
-package com.alesegdia.platgen.tilemap;
+package com.alesegdia.platgen.map;
 
 public class TileType {
 	public static final int WALL=1; // muro

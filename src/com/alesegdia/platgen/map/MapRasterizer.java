@@ -1,7 +1,6 @@
-package com.alesegdia.platgen.generator;
+package com.alesegdia.platgen.map;
 
-import com.alesegdia.platgen.tilemap.TileMap;
-import com.alesegdia.platgen.tilemap.TileType;
+import com.alesegdia.platgen.sector.SectorPlotterVisitor;
 
 public class MapRasterizer {
 

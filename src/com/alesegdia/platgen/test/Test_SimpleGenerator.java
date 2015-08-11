@@ -1,8 +1,8 @@
 package com.alesegdia.platgen.test;
 
 import com.alesegdia.platgen.generator.SimpleGenerator;
-import com.alesegdia.platgen.tilemap.TileMap;
-import com.alesegdia.platgen.tilemap.TileMapRenderer;
+import com.alesegdia.platgen.map.TileMap;
+import com.alesegdia.platgen.map.TileMapRenderer;
 
 public class Test_SimpleGenerator {
 

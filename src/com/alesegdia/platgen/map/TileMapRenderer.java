@@ -1,4 +1,4 @@
-package com.alesegdia.platgen.tilemap;
+package com.alesegdia.platgen.map;
 
 import java.awt.Color;
 import java.awt.Dimension;

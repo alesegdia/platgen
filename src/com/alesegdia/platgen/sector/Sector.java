@@ -1,5 +1,6 @@
-package com.alesegdia.platgen.generator;
+package com.alesegdia.platgen.sector;
 
+import com.alesegdia.platgen.region.Region;
 import com.alesegdia.platgen.util.Rect;
 
 public class Sector extends Rect {

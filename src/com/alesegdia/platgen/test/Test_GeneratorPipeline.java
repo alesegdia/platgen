@@ -1,10 +1,10 @@
 package com.alesegdia.platgen.test;
 
-import com.alesegdia.platgen.generator.Config;
-import com.alesegdia.platgen.generator.ERegionGenerator;
+import com.alesegdia.platgen.config.Config;
+import com.alesegdia.platgen.config.ERegionGenerator;
 import com.alesegdia.platgen.generator.GeneratorPipeline;
-import com.alesegdia.platgen.tilemap.TileMap;
-import com.alesegdia.platgen.tilemap.TileMapRenderer;
+import com.alesegdia.platgen.map.TileMap;
+import com.alesegdia.platgen.map.TileMapRenderer;
 import com.alesegdia.platgen.util.Vec2;
 
 public class Test_GeneratorPipeline {

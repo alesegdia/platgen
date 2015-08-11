@@ -1,4 +1,4 @@
-package com.alesegdia.platgen.generator;
+package com.alesegdia.platgen.region;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import com.alesegdia.platgen.map.LogicMap;
 import com.alesegdia.platgen.util.RNG;
 
 public class RegionGeneratorSimple implements IRegionGenerator {

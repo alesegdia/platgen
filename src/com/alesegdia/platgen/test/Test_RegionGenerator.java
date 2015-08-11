@@ -1,10 +1,10 @@
 package com.alesegdia.platgen.test;
 
-import com.alesegdia.platgen.generator.Config;
-import com.alesegdia.platgen.generator.LogicMap;
-import com.alesegdia.platgen.generator.MapRasterizer;
-import com.alesegdia.platgen.generator.RegionGeneratorBalanced;
-import com.alesegdia.platgen.tilemap.TileMapRenderer;
+import com.alesegdia.platgen.config.Config;
+import com.alesegdia.platgen.map.LogicMap;
+import com.alesegdia.platgen.map.MapRasterizer;
+import com.alesegdia.platgen.map.TileMapRenderer;
+import com.alesegdia.platgen.region.RegionGeneratorBalanced;
 
 public class Test_RegionGenerator {
 

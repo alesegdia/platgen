@@ -1,8 +1,9 @@
-package com.alesegdia.platgen.generator;
+package com.alesegdia.platgen.region;
 
 import java.util.LinkedList;
 import java.util.List;
 
+import com.alesegdia.platgen.sector.Sector;
 import com.alesegdia.platgen.util.Rect;
 
 public class Region extends Rect {
