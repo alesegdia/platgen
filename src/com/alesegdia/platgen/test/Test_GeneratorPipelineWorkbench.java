@@ -36,18 +36,27 @@ public class Test_GeneratorPipelineWorkbench {
 		GeneratorPipeline gp = new GeneratorPipeline();
 		TileMap tm = gp.generate(cfg);
 		LogicMap lm = gp.getLogicMap();
-		
-		CheckNearBlocksConvolutor cnbc = new CheckNearBlocksConvolutor(new CNTSInRange(10,20), tm, 10,10, false);
-		TileMap tmConvoluted = cnbc.convolute();
-		
+
 		{
-			cnbc = new CheckNearBlocksConvolutor(new CNTSInRange(10,20), tm, 20, 20, false);			
-			TileMap tmOneWayPlatforms = cnbc.convolute();
-			tmOneWayPlatforms.RenderGUI(1);
+			CheckNearBlocksConvolutor cnbc;
+			TileMap oneWayPlats1, oneWayPlats2,
+					union, strikesRemoved, oneWayPlatsFinal;
+			cnbc = new CheckNearBlocksConvolutor(new CNTSInRange(10,20), tm, 10, 10, false);
+			oneWayPlats1 = MapUtils.Extract(cnbc.convolute(),TileType.DOORL);
+			cnbc = new CheckNearBlocksConvolutor(new CNTSInRange(10,20), tm, 15, 15, false);			
+			oneWayPlats2 = MapUtils.Extract(cnbc.convolute(), TileType.DOORL);
+			union = MapUtils.Union(oneWayPlats2, MapUtils.Union(oneWayPlats1, tm));
+			union.RenderGUI(4);
+			strikesRemoved = MapUtils.RemoveHorizontalStrikesOfLessThan(union, TileType.DOORL, 3);
+			oneWayPlatsFinal = MapUtils.Union(strikesRemoved, tm);
+			oneWayPlatsFinal.RenderGUI(4);
 		}
-		
-		/*
+
 		{
+			CheckNearBlocksConvolutor cnbc;
+			cnbc = new CheckNearBlocksConvolutor(new CNTSInRange(10,20), tm, 10,10, false);
+			TileMap tmConvoluted = cnbc.convolute();
+			tmConvoluted.RenderGUI(2);
 			TileMap contoursOnly = new TileMap(tm.cols, tm.rows, TileType.FREE);
 			RegionOutlinerVisitor rov = new RegionOutlinerVisitor(contoursOnly);
 			lm.regionTree.visit(rov);
@@ -98,7 +107,6 @@ public class Test_GeneratorPipelineWorkbench {
 			
 			tmConvoluted.RenderGUI(2);
 		}
-		*/
 	}
 	
 }

@@ -26,4 +26,50 @@ public class MapUtils {
 		}
 		return union;
 	}
+	
+	public static TileMap Extract( TileMap tm, int tt ) {
+		TileMap extraction = new TileMap(tm.cols, tm.rows, TileType.FREE);
+		for( int i = 0; i < extraction.cols; i++ ) {
+			for( int j = 0; j < extraction.rows; j++ ) {
+				int ttt = tm.Get(i,j);
+				if( ttt == tt ) {
+					extraction.Set(i, j, tt);
+				}
+			}
+		}
+		return extraction;
+	}
+	
+	public static TileMap RemoveHorizontalStrikesOfLessThan( TileMap tm, int tt, int numStrike ) {
+		TileMap ret = new TileMap(tm.cols, tm.rows, TileType.FREE);
+		
+		int currentStrike = 0;
+		int lastStrikeX = -1;
+		for( int j = 0; j < tm.rows; j++ ) {
+			for( int i = 0; i < tm.cols; i++ ) {
+				if( tm.Get(j, i) == tt ) {
+					if( lastStrikeX == -1 ) {
+						// start new strike
+						lastStrikeX = i;
+						currentStrike = 0;
+					}
+					currentStrike++;
+				} else {
+					// there is possible strike
+					if( lastStrikeX != -1 ) {
+						if( Math.abs(lastStrikeX - i) > numStrike ) {
+							for( int ii = lastStrikeX; ii < i; ii++ ) {
+								ret.Set(j,ii,tt);
+							}
+						}
+					}
+					currentStrike = 0;
+					lastStrikeX = -1;
+				}
+			}
+			currentStrike = 0;
+			lastStrikeX = -1;
+		}
+		return ret;
+	}
 }
