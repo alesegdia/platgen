@@ -12,10 +12,6 @@ public class RegionGeneratorBalanced implements IRegionGenerator {
 	
 	RNG rng = new RNG();
 	
-	public static final int numRegions = 5;
-	public static final float minK = 0.25f;
-	public static final float maxK = 0.75f;
-	
 	float clamp(float k, float max, float min) {
 		//return Math.min(max, Math.max(k, min));
 		if( k < min ) return min;
@@ -30,6 +26,8 @@ public class RegionGeneratorBalanced implements IRegionGenerator {
 	Set<RegionDivision> rdset = new HashSet<RegionDivision>();
 
 	private LogicMap lm;
+
+	private Config cfg;
 	
 	public void cleanSet() {
 		List<RegionDivision> remove_rds = new LinkedList<RegionDivision>();
@@ -53,13 +51,17 @@ public class RegionGeneratorBalanced implements IRegionGenerator {
 		}
 	}
 	
+	public RegionGeneratorBalanced(Config cfg) {
+		this.cfg = cfg;
+	}
+	
 	public LogicMap Generate( int w, int h ) {
 		lm = new LogicMap(w,h);
 		List<RegionTree> children = new LinkedList<RegionTree>();
 		rdset.clear();
 		children.add(lm.regionTree);
 		
-		for( int i = 0; i < numRegions; i++ ) {
+		for( int i = 0; i < cfg.numRegions; i++ ) {
 			this.AddDivisionsFromList(children);
 			cleanSet();
 
@@ -68,7 +70,7 @@ public class RegionGeneratorBalanced implements IRegionGenerator {
 			Collections.sort(rdlist);
 
 			RegionDivision rd = rdlist.get(0);
-			float k = clamp(rng.nextFloat(), minK, maxK);
+			float k = clamp(rng.nextFloat(), cfg.minK, cfg.maxK);
 			boolean horizontal = rd.horizontal;
 			rd.r.Divide(horizontal, k);
 			children.add(rd.r.A);

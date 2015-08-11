@@ -5,16 +5,17 @@ import com.alesegdia.platgen.util.Vec2;
 
 public class SectorGenerator {
 	
-	public static final Vec2 zoneWidthRange = new Vec2(6,40);
-	public static final Vec2 deltaHeightRange = new Vec2(3,5);
-	public static final Vec2 ySizeRange = new Vec2(10,20);
-	public static final Vec2 gapWidthRange = new Vec2(3,6);
-
 	RNG rng = new RNG();
 	
 	int lastX = 0;
 	int lastY = 0;
 	private Region region;
+
+	private Config cfg;
+	
+	public SectorGenerator(Config cfg) {
+		this.cfg = cfg;
+	}
 	
 	public void Generate(Region r) {
 		this.region = r;
@@ -33,17 +34,17 @@ public class SectorGenerator {
 	}
 	
 	private void plotGap() {
-		int width = rng.nextInt(gapWidthRange.x, gapWidthRange.y);
+		int width = rng.nextInt(cfg.gapWidthRange.x, cfg.gapWidthRange.y);
 		region.createGapSector(lastX, width);
 		lastX += width;
 	}
 
 	private void plotZone() {
-		int width = rng.nextInt(zoneWidthRange.x, zoneWidthRange.y);
-		int height = rng.nextInt(deltaHeightRange.x, deltaHeightRange.y);
+		int width = rng.nextInt(cfg.zoneWidthRange.x, cfg.zoneWidthRange.y);
+		int height = rng.nextInt(cfg.deltaHeightRange.x, cfg.deltaHeightRange.y);
 		int sign = (rng.nextFloat() > 0.5 ? 1 : -1);
 		
-		int ySize = rng.nextInt(ySizeRange.x, ySizeRange.y);
+		int ySize = rng.nextInt(cfg.ySizeRange.x, cfg.ySizeRange.y);
 		region.createSolidSector(lastX, width, lastY + height * sign, ySize);
 		lastX = lastX + width;
 		lastY = lastY + height * sign;

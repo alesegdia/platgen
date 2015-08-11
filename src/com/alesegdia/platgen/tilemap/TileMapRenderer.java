@@ -67,4 +67,9 @@ public class TileMapRenderer extends JComponent {
 		mainFrame.setVisible(true);
 	}
 
+	public void setTileSize(int i) {
+		this.tilesize = i;
+		this.dimension = new Dimension(map.cols * tilesize, map.rows * tilesize);
+	}
+
 }
