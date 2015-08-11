@@ -1,5 +1,6 @@
 package com.alesegdia.platgen.test;
 
+import com.alesegdia.platgen.generator.Config;
 import com.alesegdia.platgen.generator.IRegionGenerator;
 import com.alesegdia.platgen.generator.LogicMap;
 import com.alesegdia.platgen.generator.MapRasterizer;
@@ -12,10 +13,11 @@ import com.alesegdia.platgen.tilemap.TileMapRenderer;
 public class Test_RegionSectorGenerator {
 
 	public static void main(String[] args) {
-		IRegionGenerator g = new RegionGeneratorBalanced();
+		Config cfg = new Config();
+		IRegionGenerator g = new RegionGeneratorBalanced(cfg);
 		//RegionGenerator g = new RegionGenerator();
 		LogicMap lm = g.Generate(200, 100);
-		SectorGenerator sg = new SectorGenerator();
+		SectorGenerator sg = new SectorGenerator(cfg);
 		SectorCreatorVisitor scv = new SectorCreatorVisitor(sg);
 		lm.regionTree.visit(scv);
 		MapRasterizer mr = new MapRasterizer(lm);
