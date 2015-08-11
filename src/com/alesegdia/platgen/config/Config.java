@@ -1,5 +1,6 @@
 package com.alesegdia.platgen.config;
 
+import com.alesegdia.platgen.region.IRegionDivisionFitnessSolver;
 import com.alesegdia.platgen.util.Vec2;
 
 public class Config {
@@ -19,5 +20,6 @@ public class Config {
 	public Vec2 ySizeRange = new Vec2(10,20);
 	public Vec2 gapWidthRange = new Vec2(3,6);
 	public boolean rasterRegionLimits = false;
-
+	public ERDFSType rdfsType;
+	
 }
