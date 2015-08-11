@@ -1,8 +1,10 @@
 package com.alesegdia.platgen.test;
 
 import com.alesegdia.platgen.config.Config;
+import com.alesegdia.platgen.config.ERDFSType;
 import com.alesegdia.platgen.config.ERegionGenerator;
 import com.alesegdia.platgen.generator.GeneratorPipeline;
+import com.alesegdia.platgen.map.CheckNearBlocksConvolutor;
 import com.alesegdia.platgen.map.TileMap;
 import com.alesegdia.platgen.map.TileMapRenderer;
 import com.alesegdia.platgen.util.Vec2;
@@ -16,17 +18,19 @@ public class Test_GeneratorPipeline {
 		cfg.mapSize = new Vec2(400,400);
 		cfg.regionGeneratorType = ERegionGenerator.BALANCED;
 		cfg.minK = 0.25f;
-		cfg.maxK = 0.25f;
-		cfg.numRegions = 5;
+		cfg.maxK = 0.75f;
+		cfg.numRegions = 7;
+		cfg.rdfsType = ERDFSType.COMBINED;
 		
-		cfg.rasterRegionLimits = true;
+		cfg.rasterRegionLimits = false;
 		
 		// generate map
 		GeneratorPipeline gp = new GeneratorPipeline();
 		TileMap tm = gp.generate(cfg);
-		
+		CheckNearBlocksConvolutor cnbc = new CheckNearBlocksConvolutor(tm,10,10);
+
 		// render it
-		TileMapRenderer tmr = new TileMapRenderer(tm);
+		TileMapRenderer tmr = new TileMapRenderer(cnbc.convolute());
 		tmr.setTileSize(1);
 		tmr.Show();
 	}
