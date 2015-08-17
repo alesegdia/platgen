@@ -11,7 +11,7 @@ public class MapRasterizer {
 	}
 	
 	public TileMap raster() {
-		TileMap tm = new TileMap(map.size.y, map.size.x, TileType.FREE);
+		TileMap tm = new TileMap(map.size.y*2, map.size.x*2, TileType.FREE);
 		//map.regionTree.visit(new RegionOutlinerVisitor(tm));
 		map.regionTree.visit(new SectorPlotterVisitor(tm));
 		return tm;
