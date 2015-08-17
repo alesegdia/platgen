@@ -12,7 +12,7 @@ public class CNTSOutRange implements ICheckNearTilesSolver {
 	
 	@Override
 	public boolean process(int numNearTiles) {
-		return numNearTiles < min && numNearTiles > max;
+		return !(numNearTiles > min && numNearTiles < max);
 	}
 
 }

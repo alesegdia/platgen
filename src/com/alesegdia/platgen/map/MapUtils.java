@@ -1,5 +1,10 @@
 package com.alesegdia.platgen.map;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.alesegdia.platgen.util.Vec2;
+
 public class MapUtils {
 
 	public static TileMap NegateMap (TileMap tm, int tileToNegate ) {
@@ -84,5 +89,18 @@ public class MapUtils {
 		}
 		return ret;
 	}
+	
+	public static TileMap Intersect( TileMap tm1, TileMap tm2, int tileToAnd ) {
+		TileMap ret = new TileMap(tm1.cols, tm1.rows, TileType.FREE);
+		for( int i = 0; i < ret.cols; i++ ) {
+			for( int j = 0; j < ret.rows; j++ ) {
+				if( tm1.Get(i, j) == tileToAnd && tm2.Get(i, j) == tileToAnd ) {
+					ret.Set(i, j, tileToAnd);
+				}
+			}
+		}
+		return ret;
+	}
+	
 	
 }

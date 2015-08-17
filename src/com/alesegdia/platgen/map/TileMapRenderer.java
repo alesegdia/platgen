@@ -29,11 +29,13 @@ public class TileMapRenderer extends JComponent {
 				switch( map.Get(j, i) )
 				{
 				case TileType.FREE:	c = Color.white; 		break;
-				case TileType.DOOR: 	c = Color.yellow; 		break;
+				case TileType.LASTSECTOR: 	c = Color.yellow; 		break;
 				case TileType.ONEWAYPLATFORM: 	c = Color.cyan; 		break;
 				case TileType.REGIONLIMIT: 	c = Color.magenta;		break;
 				case TileType.USED: 	c = Color.lightGray; 	break;
 				case TileType.WALL: 	c = Color.green; 		break;
+				case TileType.MOBZONE: 	c = Color.ORANGE; 		break;
+				case TileType.MOBLIMIT: 	c = Color.red; 		break;
 				}
 				g.setColor(c);
 				g.fillRect(i * tilesize, j * tilesize, tilesize, tilesize);
